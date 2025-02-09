@@ -1,0 +1,15 @@
+﻿global using AutoMapper;
+global using HouseRentals.Api.Constants;
+global using HouseRentals.Api.Contexts;
+global using HouseRentals.Api.DTOs;
+global using HouseRentals.Api.Entities;
+global using HouseRentals.Api.Exceptions;
+global using HouseRentals.Api.Interfaces;
+global using HouseRentals.Api.Mappings;
+global using HouseRentals.Api.ProfileMappings;
+global using HouseRentals.Api.Repositories;
+global using HouseRentals.Api.Services;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using System.Linq.Expressions;
