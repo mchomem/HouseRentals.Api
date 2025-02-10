@@ -24,14 +24,23 @@ public class TenantController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostAsync(TenantDto tenantDto)
-        => Ok(await _tenantService.CreateAsync(tenantDto));
+    public async Task<IActionResult> PostAsync(TenantInsertDto tenantDto)
+    {
+        var tenant = await _tenantService.CreateAsync(tenantDto);
+        return Ok(tenant);
+    }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, TenantDto tenantDto)
-        => Ok(await _tenantService.UpdateAsync(id, tenantDto));
+    {
+        var tenant = await _tenantService.UpdateAsync(id, tenantDto);
+        return Ok(tenant);
+    }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(int id)
-        => Ok(await _tenantService.DeleteAsync(id));
+    {
+        var tenant = await _tenantService.DeleteAsync(id);
+        return Ok(tenant);
+    }        
 }

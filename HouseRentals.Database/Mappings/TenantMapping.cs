@@ -6,35 +6,35 @@ public class TenantMapping : IEntityTypeConfiguration<Tenant>
     {
         builder
             .ToTable("Tenant")
-            .HasKey(t => t.Id);
+            .HasKey(x => x.Id);
 
         builder
-            .Property(t => t.Id)
+            .Property(x => x.Id)
             .IsRequired()
             .ValueGeneratedOnAdd();
 
         builder
-            .Property(t => t.FullName)
+            .Property(x => x.FullName)
             .HasColumnType("varchar(100)")
             .IsRequired();
 
         builder
-            .Property(t => t.Email)
+            .Property(x => x.Email)
             .HasColumnType("varchar(40)")
             .IsRequired();
         
         builder
-            .Property(t => t.PhoneNumber)
+            .Property(x => x.PhoneNumber)
             .HasColumnType("char(11)")
             .IsRequired();
 
         builder
-            .Property(t => t.BirthDate)
+            .Property(x => x.BirthDate)
             .HasColumnType("datetime")
             .IsRequired();
 
         builder
-            .Property(t => t.Deleted)
+            .Property(x => x.Deleted)
             .HasColumnType("bit")
             .HasDefaultValueSql("0")
             .IsRequired();

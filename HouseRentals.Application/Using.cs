@@ -4,6 +4,7 @@ global using HouseRentals.Application.Filters;
 global using HouseRentals.Application.Interfaces;
 global using HouseRentals.Domain.Constants;
 global using HouseRentals.Domain.Entities;
+global using HouseRentals.Domain.Enuns;
 global using HouseRentals.Domain.Exceptions;
 global using HouseRentals.Domain.Interfaces;
 global using System.Linq.Expressions;

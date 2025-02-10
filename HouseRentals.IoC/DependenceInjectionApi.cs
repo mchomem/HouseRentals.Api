@@ -11,7 +11,11 @@ public static class DependenceInjectionApi
         services.AddScoped<AppDbContext, AppDbContext>();
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
         services.AddScoped<ITenantRepository, TenantRepository>();
+        services.AddScoped<IHouseRepository, HouseRepository>();
+        
         services.AddScoped<ITenantService, TenantService>();
+        services.AddScoped<IHouseService, HouseService>();
+
         services.AddAutoMapper(typeof(ProfileMapping));
 
         return services;

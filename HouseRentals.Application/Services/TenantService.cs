@@ -11,7 +11,7 @@ public class TenantService : ITenantService
         _mapper = mapper;
     }
 
-    public async Task<TenantDto> CreateAsync(TenantDto entity)
+    public async Task<TenantDto> CreateAsync(TenantInsertDto entity)
     {
         Tenant tenant = new(entity.FullName, entity.Email, entity.PhoneNumber, entity.BirthDate);        
         return _mapper.Map<TenantDto>(await _tenantRepository.CreateAsync(tenant));

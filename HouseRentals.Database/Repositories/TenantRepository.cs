@@ -1,4 +1,4 @@
-﻿namespace HouseRentals.Api.Repositories;
+﻿namespace HouseRentals.Database.Repositories;
 
 public class TenantRepository : ITenantRepository
 {
