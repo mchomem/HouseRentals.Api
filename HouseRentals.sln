@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Domain", "Hous
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Application", "HouseRentals.Application\HouseRentals.Application.csproj", "{8A9C6066-6917-452F-A36F-74335E69E01A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Core", "1 - Core", "{2EF08330-24C2-46E4-80C1-040866F48118}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infrastructure", "2 - Infrastructure", "{7103E38C-B00B-4A99-81CA-A71FD385171B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Presentation", "3 - Presentation", "{277086C4-0CF0-485B-8495-8B3D89EEE534}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +48,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F96AA05B-F9E9-4D16-8364-3FB4B5CC02E8} = {277086C4-0CF0-485B-8495-8B3D89EEE534}
+		{809DCB43-9F68-426E-ABF0-92C89204782B} = {7103E38C-B00B-4A99-81CA-A71FD385171B}
+		{6983F878-59CF-42E2-828F-BCDBC5EAE6E3} = {7103E38C-B00B-4A99-81CA-A71FD385171B}
+		{65D306E4-8074-4E49-9B07-88331FECAC17} = {2EF08330-24C2-46E4-80C1-040866F48118}
+		{8A9C6066-6917-452F-A36F-74335E69E01A} = {2EF08330-24C2-46E4-80C1-040866F48118}
 	EndGlobalSection
 EndGlobal
