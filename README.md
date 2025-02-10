@@ -18,6 +18,6 @@ Important: in appsettings.json change the connection string to your database.
 
 ## DB Entity Relationship Diagram
 
-![Entity relationship](/Docs/Imagems/er.png)
+![Entity relationship](/Docs/Imagens/er.png)
 
 There are three entities, showing that this model is simple.
