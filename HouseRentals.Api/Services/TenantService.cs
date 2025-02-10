@@ -27,9 +27,19 @@ public class TenantService : ITenantService
         return _mapper.Map<TenantDto>(await _tenantRepository.DeleteAsync(tenant));
     }
 
-    public Task<IEnumerable<TenantDto>> GetAllAsync(Expression<Func<TenantDto, bool>> filter, string includes = "")
+    public async Task<IEnumerable<TenantDto>> GetAllAsync(TenantFilter filter, string includes = "")
     {
-        throw new NotImplementedException();
+        Expression<Func<Tenant, bool>> expressionFilter =
+            x => (
+                (string.IsNullOrEmpty(filter.FullName) || x.FullName.Contains(filter.FullName))
+                && (string.IsNullOrEmpty(filter.Email) || x.FullName.Contains(filter.Email))
+                && (string.IsNullOrEmpty(filter.PhoneNumber) || x.FullName.Contains(filter.PhoneNumber))
+                && (!filter.BirthDateStart.HasValue || x.BirthDate >= filter.BirthDateStart)
+                && (!filter.BirthDateEnd.HasValue || x.BirthDate <= filter.BirthDateEnd)
+            );
+
+        IEnumerable<Tenant> tenants = await _tenantRepository.GetAllAsync(expressionFilter);
+        return _mapper.Map<IEnumerable<TenantDto>>(tenants);
     }
 
     public async Task<TenantDto> GetAsync(long id)

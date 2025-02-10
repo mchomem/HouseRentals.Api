@@ -4,6 +4,7 @@ global using HouseRentals.Api.Contexts;
 global using HouseRentals.Api.DTOs;
 global using HouseRentals.Api.Entities;
 global using HouseRentals.Api.Exceptions;
+global using HouseRentals.Api.Filters;
 global using HouseRentals.Api.Interfaces;
 global using HouseRentals.Api.Mappings;
 global using HouseRentals.Api.ProfileMappings;

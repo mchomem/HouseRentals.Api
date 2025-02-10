@@ -10,9 +10,9 @@ public class TenantController : ControllerBase
         => _tenantService = tenantService;
 
     [HttpGet]
-    public async Task<IActionResult> GetAlAsync()
+    public async Task<IActionResult> GetAlAsync([FromQuery] TenantFilter filter)
     {
-        var tenants = await _tenantService.GetAllAsync(t => true);
+        var tenants = await _tenantService.GetAllAsync(filter);
         return Ok(tenants);
     }
 
