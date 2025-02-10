@@ -19,6 +19,7 @@ public class Tenant : BaseEntity
     public string Email { get; private set; }
     public string PhoneNumber { get; private set; }
     public DateTime BirthDate { get; private set; }
+    public bool Deleted { get; private set; }
 
     public void Update(string fullName, string email, string phoneNumber, DateTime birthDate)
     {
@@ -29,6 +30,9 @@ public class Tenant : BaseEntity
         PhoneNumber = phoneNumber;
         BirthDate = birthDate;
     }
+
+    public void Delete()
+        => Deleted = true;
 
     private void CheckIfMinor(DateTime birthDate)
     {

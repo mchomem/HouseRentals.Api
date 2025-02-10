@@ -24,7 +24,9 @@ public class TenantService : ITenantService
         if (tenant is null)
             throw new TenantException(DefaultMessages.TenantNotFound);
 
-        return _mapper.Map<TenantDto>(await _tenantRepository.DeleteAsync(tenant));
+        tenant.Delete();
+
+        return _mapper.Map<TenantDto>(await _tenantRepository.UpdateAsync(tenant));
     }
 
     public async Task<IEnumerable<TenantDto>> GetAllAsync(TenantFilter filter, string includes = "")
@@ -36,6 +38,7 @@ public class TenantService : ITenantService
                 && (string.IsNullOrEmpty(filter.PhoneNumber) || x.FullName.Contains(filter.PhoneNumber))
                 && (!filter.BirthDateStart.HasValue || x.BirthDate >= filter.BirthDateStart)
                 && (!filter.BirthDateEnd.HasValue || x.BirthDate <= filter.BirthDateEnd)
+                && !x.Deleted
             );
 
         IEnumerable<Tenant> tenants = await _tenantRepository.GetAllAsync(expressionFilter);

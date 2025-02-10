@@ -32,5 +32,11 @@ public class TenantMapping : IEntityTypeConfiguration<Tenant>
             .Property(t => t.BirthDate)
             .HasColumnType("datetime")
             .IsRequired();
+
+        builder
+            .Property(t => t.Deleted)
+            .HasColumnType("bit")
+            .HasDefaultValueSql("0")
+            .IsRequired();
     }
 }
