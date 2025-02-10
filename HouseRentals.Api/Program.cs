@@ -1,19 +1,11 @@
-
+using HouseRentals.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-builder.Services.AddScoped<AppDbContext, AppDbContext>();
-builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
-builder.Services.AddScoped<ITenantRepository, TenantRepository>();
-builder.Services.AddScoped<ITenantService, TenantService>();
-builder.Services.AddAutoMapper(typeof(ProfileMapping));
+builder.Services.AddInfrastructure(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
