@@ -2,7 +2,7 @@
 
 public class HouseFilter
 {
-    public string Address { get; set; } = string.Empty;
+    public string? Address { get; set; }
     public decimal? DailyPriceStart { get; set; }
     public decimal? DailyPriceEnd { get; set; }
     public HouseStatus? Status { get; set; }

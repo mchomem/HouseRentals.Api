@@ -5,6 +5,8 @@
 /// </summary>
 public class Rental : BaseEntity
 {
+    private Rental() { }
+
     public Rental(long houseId, House house, long tenantId, Tenant tenant, DateTime startDate, DateTime endDate, decimal discount, string observation)
     {
         HouseId = houseId;
@@ -14,7 +16,7 @@ public class Rental : BaseEntity
         Tenant = tenant;
         StartDate = startDate;
         EndDate = endDate;
-        Discount = SetDiscount(discount);
+        Discount = CheckDiscount(discount);
         TotalPrice = CalculateTotalPrice();
         TotalToPay = TotalPrice - (TotalPrice * Discount / 100);
         Observation = observation;
@@ -30,6 +32,23 @@ public class Rental : BaseEntity
     public decimal TotalPrice { get; private set; }
     public decimal TotalToPay { get; private set; }
     public string Observation { get; private set; }
+    public bool RentPaid { get; private set; }
+    public DateTime? RentPaymentDate { get; private set; }
+
+    public void Update(long houseId, House house, long tenantId, Tenant tenant, DateTime startDate, DateTime endDate, decimal discount, string observation)
+    {
+        HouseId = houseId;
+        House = house;
+        House.SetStatus(HouseStatus.Rented);
+        TenantId = tenantId;
+        Tenant = tenant;
+        StartDate = startDate;
+        EndDate = endDate;
+        Discount = CheckDiscount(discount);
+        TotalPrice = CalculateTotalPrice();
+        TotalToPay = TotalPrice - (TotalPrice * Discount / 100);
+        Observation = observation;
+    }
 
     /// <summary>
     /// Calcula o preço total com base na duração do aluguel.
@@ -40,11 +59,27 @@ public class Rental : BaseEntity
         return days * House.DailyPrice;
     }
 
-    private decimal SetDiscount(decimal discount)
+    /// <summary>
+    /// Verifica se o desconto é válido.
+    /// </summary>
+    /// <param name="discount"></param>
+    /// <returns></returns>
+    /// <exception cref="RentalException"></exception>
+    private decimal CheckDiscount(decimal discount)
     {
         if (discount < 0 || discount > 100)
             throw new RentalException(DefaultMessages.RentalInvalidDiscount);
 
         return discount;
+    }
+
+    /// <summary>
+    /// Faz o encerramento do aluguel, tornando a casa disponível novamente.
+    /// </summary>
+    public void UnRent()
+    {
+        RentPaid = true;
+        RentPaymentDate = DateTime.UtcNow;
+        House.SetStatus(HouseStatus.Available);
     }
 }

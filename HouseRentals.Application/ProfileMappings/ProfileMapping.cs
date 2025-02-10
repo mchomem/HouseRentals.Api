@@ -9,5 +9,9 @@ public class ProfileMapping : Profile
 
         CreateMap<House, HouseDto>().ReverseMap();
         CreateMap<House, HouseInsertDto>().ReverseMap();
+
+        CreateMap<Rental, RentalDto>().ReverseMap();
+        CreateMap<Rental, RentalInsertDto>().ReverseMap();
+        CreateMap<Rental, RentalUpdateDto>().ReverseMap();
     }
 }

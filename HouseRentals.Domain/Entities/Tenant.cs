@@ -5,6 +5,8 @@
 /// </summary>
 public class Tenant : BaseEntity
 {
+    private Tenant() { }
+
     public Tenant(string fullName, string email, string phoneNumber, DateTime birthDate)
     {
         CheckIfMinor(birthDate);
@@ -20,6 +22,8 @@ public class Tenant : BaseEntity
     public string PhoneNumber { get; private set; }
     public DateTime BirthDate { get; private set; }
     public bool Deleted { get; private set; }
+
+    public ICollection<Rental> Rentals { get; private set; }
 
     public void Update(string fullName, string email, string phoneNumber, DateTime birthDate)
     {

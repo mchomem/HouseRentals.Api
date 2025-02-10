@@ -5,6 +5,8 @@
 /// </summary>
 public class House : BaseEntity
 {
+    private House() { }
+
     public House(string address, decimal dailyPrice, int numberOfRooms, string description, string imageFileName)
     {
         Address = address;
@@ -22,6 +24,8 @@ public class House : BaseEntity
     public string Description { get; private set; }
     public string ImageFileName { get; private set; }
     public bool Deleted { get; private set; }
+
+    public ICollection<Rental> Rentals { get; private set; }
 
     public void Update(string address, decimal rentPrice, HouseStatus status, int numberOfRooms, string description, string imageFileName)
     {

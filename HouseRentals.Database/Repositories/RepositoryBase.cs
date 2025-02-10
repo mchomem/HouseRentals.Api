@@ -27,12 +27,10 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
 
     public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter, string includes = "")
     {
-        IQueryable<TEntity> query = _DbSet.AsQueryable();
-
-        if (filter != null)
-            query = query
-                .Where(filter)
-                .AsNoTracking();
+        IQueryable<TEntity> query = _DbSet
+            .AsQueryable()
+            .AsNoTracking()
+            .Where(filter);
 
         if (!string.IsNullOrEmpty(includes))
         {
@@ -46,6 +44,20 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
     public async Task<TEntity> GetAsync(long id)
     {
         var entity = await _DbSet.FindAsync(id);
+        return entity!;
+    }
+
+    public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, string includes = "")
+    {
+        IQueryable<TEntity> query = _DbSet
+                .AsQueryable()
+                .Where(filter)
+                .AsNoTracking();
+
+        foreach (var include in includes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            query = query.Include(include);
+
+        var entity = await query.FirstOrDefaultAsync();
         return entity!;
     }
 

@@ -13,13 +13,13 @@ public class HouseService : IHouseService
 
     public async Task<HouseDto> CreateAsync(HouseInsertDto entity)
     {
-        House house = new(entity.Address, entity.DailyPrice, entity.NumberOfRooms, entity.Description, entity.ImageFileName);
+        var house = new House(entity.Address, entity.DailyPrice, entity.NumberOfRooms, entity.Description, entity.ImageFileName);
         return _mapper.Map<HouseDto>(await _houseRepository.CreateAsync(house));
     }
 
     public async Task<HouseDto> DeleteAsync(long id)
     {
-        House house = await _houseRepository.GetAsync(id);
+        var house = await _houseRepository.GetAsync(id);
 
         if(house is null)
             throw new HouseException(DefaultMessages.HouseNotFound);
@@ -48,13 +48,13 @@ public class HouseService : IHouseService
 
     public async Task<HouseDto> GetAsync(long id)
     {
-        House house = await _houseRepository.GetAsync(id);
+        var house = await _houseRepository.GetAsync(id);
         return _mapper.Map<HouseDto>(house);
     }
 
     public async Task<HouseDto> UpdateAsync(long id, HouseDto entity)
     {
-        House house = await _houseRepository.GetAsync(id);
+        var house = await _houseRepository.GetAsync(id);
 
         if (house is null)
             throw new HouseException(DefaultMessages.HouseNotFound);

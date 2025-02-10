@@ -11,7 +11,7 @@ public class DefaultMessages
     public const string HouseUnderMaintenance = "House under maintenance.";
     public const string HouseUnavailable = "House unavailable.";
     public const string HouseDeleted = "The house is not registered in the system.";
-    
-    public const string RentalInvalidDiscount = "Invalid discount";
 
+    public const string RentalNotFound = "Rental not found.";
+    public const string RentalInvalidDiscount = "Invalid discount";
 }
