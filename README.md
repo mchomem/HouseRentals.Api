@@ -13,3 +13,5 @@ Add-Migration InitialCreate -Context AppDbContext
 
 Update-Database -Context AppDbContext
 ```
+
+Important: in appsettings.json change the connection string to your database.
