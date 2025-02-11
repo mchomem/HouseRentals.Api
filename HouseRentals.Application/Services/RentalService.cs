@@ -31,7 +31,7 @@ public class RentalService : IRentalService
         if (tenant is null)
             throw new RentalException(DefaultMessages.TenantNotFound);
 
-        var rental = new Rental(entity.HouseId, house, entity.TenantId, tenant, entity.StartDate, entity.EndDate, entity.Discount, entity.Observation);
+        var rental = new Rental(entity.HouseId, house, entity.TenantId, tenant, entity.StartDate, entity.EndDate, entity.Observation);
 
         return _mapper.Map<RentalDto>(await _rentalRepository.CreateAsync(rental));
     }
@@ -92,12 +92,34 @@ public class RentalService : IRentalService
         if (tenant is null)
             throw new RentalException(DefaultMessages.TenantNotFound);
 
-        rental.Update(entity.HouseId, house, entity.TenantId, tenant, entity.StartDate, entity.EndDate, entity.Discount, entity.Observation);
+        rental.Update(entity.HouseId, house, entity.TenantId, tenant, entity.StartDate, entity.EndDate, entity.Discount,  entity.Observation);
 
         return _mapper.Map<RentalDto>(await _rentalRepository.UpdateAsync(rental));
     }
 
-    public async Task<RentalDto> UnRent(long id)
+    public async Task<RentalDto> RentAsync(long id, decimal discont)
+    {
+        var rental = await _rentalRepository.GetAsync(id);
+
+        if (rental is null)
+            throw new RentalException(DefaultMessages.RentalNotFound);
+
+        var house = await _houseRepository.GetAsync(rental.HouseId);
+
+        if (house is null)
+            throw new RentalException(DefaultMessages.HouseNotFound);
+
+        var tenant = await _tenantRepository.GetAsync(rental.TenantId);
+
+        if (tenant is null)
+            throw new RentalException(DefaultMessages.TenantNotFound);
+
+        rental.Rent(discont);
+
+        return _mapper.Map<RentalDto>(await _rentalRepository.UpdateAsync(rental));
+    }
+
+    public async Task<RentalDto> UnRentAsync(long id)
     {
         var rental = await _rentalRepository.GetAsync(id);
 

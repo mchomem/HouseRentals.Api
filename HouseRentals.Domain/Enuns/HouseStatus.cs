@@ -7,5 +7,4 @@ public enum HouseStatus
     Rented = 3,
     UnderMaintenance = 4,
     Unavailable = 5,
-    Deleted = 6,
 }

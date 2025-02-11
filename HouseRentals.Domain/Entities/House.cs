@@ -47,49 +47,99 @@ public class House : BaseEntity
         => DailyPrice = newPrice;
 
     /// <summary>
-    /// Configura um estado da casa e verificar o estado atual.
+    /// Configura um estado da casa.
     /// </summary>
     public void SetStatus(HouseStatus status)
     {
+        CheckStatusTransicionRule(status);
+        Status = status;
+    }
+
+    /// <summary>
+    /// Quanto uma nova situação é informada,é vericado as possíveis combinações permitidas
+    /// </summary>
+    /// <param name="status"></param>
+    /// <exception cref="RentalException"></exception>
+    private void CheckStatusTransicionRule(HouseStatus status)
+    {
+        /*
+         
+        Quando ocorre um registro de aluguel, o primeiro status é reservado
+
+            Sequência cíclica de status permitidos:
+
+            Disponível -> Reservado -> Alugado -> Em Manutenção -> Indisponível -> (Disponível)
+
+        */
+
         switch (status)
         {
             case HouseStatus.Available:
-                break;
-
-            case HouseStatus.Reserved:
-                break;
-
-            case HouseStatus.UnderMaintenance:
-                break;
-
-            case HouseStatus.Rented:
-                //  A única situação que permite alugar uma casa é disponível
                 switch (Status)
                 {
                     case HouseStatus.Reserved:
-                        throw new RentalException(DefaultMessages.HouseReserved);
+                    case HouseStatus.UnderMaintenance:
+                    case HouseStatus.Unavailable:
+                        break;
 
                     case HouseStatus.Rented:
-                        throw new RentalException(DefaultMessages.HouseAlreadyRented);
+                        throw new RentalException(DefaultMessages.HouseMmustBeReserved);
+                }
+                break;
+
+            case HouseStatus.Reserved:
+                switch (Status)
+                {
+                    case HouseStatus.Rented:
+                    case HouseStatus.Available:
+                        break;
 
                     case HouseStatus.UnderMaintenance:
+                    case HouseStatus.Unavailable:
+                        throw new RentalException(DefaultMessages.HouseIsAlreadyReserved);
+                }
+                break;
+
+            case HouseStatus.UnderMaintenance:
+                switch (Status)
+                {
+                    case HouseStatus.Available:
+                    case HouseStatus.Unavailable:
+                        break;
+
+                    case HouseStatus.Reserved:
+                    case HouseStatus.Rented:
                         throw new RentalException(DefaultMessages.HouseUnderMaintenance);
+                }
+                break;
+
+            case HouseStatus.Rented:
+                //  Só é possível alugar se a situação atual não for reservada,alugada, em manutenção ou indisponível.
+                switch (Status)
+                {
+                    case HouseStatus.Available:
+                    case HouseStatus.UnderMaintenance:
+                        break;
+
+                    case HouseStatus.Reserved:
+                        throw new RentalException(DefaultMessages.HouseReserved);
 
                     case HouseStatus.Unavailable:
                         throw new RentalException(DefaultMessages.HouseUnavailable);
-
-                    case HouseStatus.Deleted: // Se no filtro não é exibido os registros deletados, será é necessário essa verificação?
-                        throw new RentalException(DefaultMessages.HouseDeleted);
                 }
                 break;
 
             case HouseStatus.Unavailable:
-                break;
-
-            case HouseStatus.Deleted:
+                switch (Status)
+                {
+                    case HouseStatus.Available:
+                    case HouseStatus.UnderMaintenance:
+                        break;
+                    case HouseStatus.Reserved:
+                    case HouseStatus.Rented:
+                        throw new RentalException(DefaultMessages.HouseUnavailable);
+                }
                 break;
         }
-
-        Status = status;
     }
 }

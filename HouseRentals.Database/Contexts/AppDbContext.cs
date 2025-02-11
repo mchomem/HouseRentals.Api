@@ -4,6 +4,7 @@ public class AppDbContext : DbContext
 {
     DbSet<Tenant> Tenant { get; set; }
     DbSet<House> House { get; set; }
+    DbSet<Rental> Rental { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 

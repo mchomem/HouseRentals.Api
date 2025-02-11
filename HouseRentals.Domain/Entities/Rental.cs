@@ -7,18 +7,18 @@ public class Rental : BaseEntity
 {
     private Rental() { }
 
-    public Rental(long houseId, House house, long tenantId, Tenant tenant, DateTime startDate, DateTime endDate, decimal discount, string observation)
+    public Rental(long houseId, House house, long tenantId, Tenant tenant, DateTime startDate, DateTime endDate, string observation)
     {
         HouseId = houseId;
         House = house;
-        House.SetStatus(HouseStatus.Rented);
+        House.SetStatus(HouseStatus.Reserved);
         TenantId = tenantId;
         Tenant = tenant;
         StartDate = startDate;
         EndDate = endDate;
-        Discount = CheckDiscount(discount);
-        TotalPrice = CalculateTotalPrice();
-        TotalToPay = TotalPrice - (TotalPrice * Discount / 100);
+        Discount = 0;
+        TotalPrice = 0;
+        TotalToPay = 0;
         Observation = observation;
     }
 
@@ -73,13 +73,32 @@ public class Rental : BaseEntity
         return discount;
     }
 
+    public void Rent(decimal discount)
+    {
+        House.SetStatus(HouseStatus.Rented);
+
+        Discount = CheckDiscount(discount);
+        TotalPrice = CalculateTotalPrice();
+        TotalToPay = TotalPrice - (TotalPrice * Discount / 100);
+    }
+
+    public void ToMakeUnavailable()
+    {
+        House.SetStatus(HouseStatus.Unavailable);
+    }
+
+    public void ToMakeAvailable()
+    {
+        House.SetStatus(HouseStatus.Available);
+    }
+
     /// <summary>
-    /// Faz o encerramento do aluguel, tornando a casa disponível novamente.
+    /// Faz o encerramento do serviço de aluguel, deixando a casa em manutenção.
     /// </summary>
     public void UnRent()
     {
         RentPaid = true;
         RentPaymentDate = DateTime.UtcNow;
-        House.SetStatus(HouseStatus.Available);
+        House.SetStatus(HouseStatus.UnderMaintenance);
     }
 }

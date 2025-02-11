@@ -1,4 +1,6 @@
-﻿namespace HouseRentals.Domain.Constants;
+﻿using HouseRentals.Domain.Entities;
+
+namespace HouseRentals.Domain.Constants;
 
 public class DefaultMessages
 {
@@ -8,9 +10,10 @@ public class DefaultMessages
     public const string HouseNotFound = "House Not found.";
     public const string HouseReserved = "House is reserved.";
     public const string HouseAlreadyRented = "House already rented.";
+    public const string HouseMmustBeReserved = "House must be reserved.";
+    public const string HouseIsAlreadyReserved = "House is already reserved";
     public const string HouseUnderMaintenance = "House under maintenance.";
     public const string HouseUnavailable = "House unavailable.";
-    public const string HouseDeleted = "The house is not registered in the system.";
 
     public const string RentalNotFound = "Rental not found.";
     public const string RentalInvalidDiscount = "Invalid discount";

@@ -37,10 +37,17 @@ public class RentalController : ControllerBase
         return Ok(rental);
     }
 
-    [HttpPut("urent/{id}")]
-    public async Task<IActionResult> PutUnRent(long id)
+    [HttpPut("rent")]
+    public async Task<IActionResult> PutRentAsync([FromQuery] long id, [FromQuery] decimal discount)
     {
-        var rental = await _rentalService.UnRent(id);
+        var rental = await _rentalService.RentAsync(id, discount);
+        return Ok(rental);
+    }
+
+    [HttpPut("unrent/{id}")]
+    public async Task<IActionResult> PutUnRentAsync(long id)
+    {
+        var rental = await _rentalService.UnRentAsync(id);
         return Ok(rental);
     }
 }
