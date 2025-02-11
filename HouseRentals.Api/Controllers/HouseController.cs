@@ -1,5 +1,6 @@
 ﻿namespace HouseRentals.Api.Controllers;
 
+
 [Route("api/[controller]")]
 [ApiController]
 public class HouseController : ControllerBase
