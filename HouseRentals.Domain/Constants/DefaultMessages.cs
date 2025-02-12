@@ -1,6 +1,4 @@
-﻿using HouseRentals.Domain.Entities;
-
-namespace HouseRentals.Domain.Constants;
+﻿namespace HouseRentals.Domain.Constants;
 
 public class DefaultMessages
 {

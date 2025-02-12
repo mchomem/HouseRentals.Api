@@ -7,3 +7,5 @@ global using HouseRentals.Domain.Interfaces;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.OpenApi.Models;
+global using System.Reflection;

@@ -1,7 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
-using System.Reflection;
-
-namespace HouseRentals.IoC;
+﻿namespace HouseRentals.IoC;
 
 public static class DependenceInjectionApi
 {
