@@ -1,6 +1,21 @@
-@HouseRentals.Api_HostAddress = http://localhost:5203
+@HouseRentals.Api_HostAddress = http://localhost:5203/api
 
-GET {{HouseRentals.Api_HostAddress}}/weatherforecast/
+GET {{HouseRentals.Api_HostAddress}}/House
 Accept: application/json
+###
 
+GET {{HouseRentals.Api_HostAddress}}/House/1
+Accept: application/json
+###
+
+GET {{HouseRentals.Api_HostAddress}}/Tenant
+Accept: application/json
+###
+
+GET {{HouseRentals.Api_HostAddress}}/Tenant/1
+Accept: application/json
+###
+
+GET {{HouseRentals.Api_HostAddress}}/Rental
+Accept: application/json
 ###
