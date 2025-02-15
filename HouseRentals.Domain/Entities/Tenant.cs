@@ -40,7 +40,13 @@ public class Tenant : BaseEntity
 
     private void CheckIfMinor(DateTime birthDate)
     {
-        if (DateTime.Now.Year - birthDate.Year < 18)
+        var today = DateTime.Today;
+        var age = today.Year - birthDate.Year;
+
+        if (birthDate.Date > today.AddYears(-age))
+            age--;
+
+        if (age < 18)
             throw new TenantException(DefaultMessages.TenantMustBeAtLeast18YearsOld);
     }
 }

@@ -27,10 +27,10 @@ public class House : BaseEntity
 
     public ICollection<Rental> Rentals { get; private set; }
 
-    public void Update(string address, decimal rentPrice, HouseStatus status, int numberOfRooms, string description, string imageFileName)
+    public void Update(string address, decimal dailyPrice, HouseStatus status, int numberOfRooms, string description, string imageFileName)
     {
         Address = address;
-        DailyPrice = rentPrice;
+        DailyPrice = dailyPrice;
         Status = status;
         NumberOfRooms = numberOfRooms;
         Description = description;
@@ -58,24 +58,29 @@ public class House : BaseEntity
     /// <summary>
     /// Quanto uma nova situação é informada,é vericado as possíveis combinações permitidas
     /// </summary>
-    /// <param name="status"></param>
+    /// <param name="newStatus"></param>
     /// <exception cref="RentalException"></exception>
-    private void CheckStatusTransicionRule(HouseStatus status)
+    private void CheckStatusTransicionRule(HouseStatus newStatus)
     {
-        /*
-         
-        Quando ocorre um registro de aluguel, o primeiro status é reservado
+        /*         
+            Quando ocorre um registro de aluguel, o primeiro status é reservado
 
             Sequência cíclica de status permitidos:
 
-            Disponível -> Reservado -> Alugado -> Em Manutenção -> Indisponível -> (Disponível)
-
+            Disponível
+            -> Reservado
+            -> Alugado
+            -> Em Manutenção
+            -> Indisponível
+            -> (volta a ser Disponível)
         */
 
-        switch (status)
+        var currentHouseStatus = Status;
+
+        switch (newStatus)
         {
             case HouseStatus.Available:
-                switch (Status)
+                switch (currentHouseStatus)
                 {
                     case HouseStatus.Reserved:
                     case HouseStatus.UnderMaintenance:
@@ -83,12 +88,12 @@ public class House : BaseEntity
                         break;
 
                     case HouseStatus.Rented:
-                        throw new RentalException(DefaultMessages.HouseMmustBeReserved);
+                        throw new HouseException(DefaultMessages.HouseMmustBeReserved);
                 }
                 break;
 
             case HouseStatus.Reserved:
-                switch (Status)
+                switch (currentHouseStatus)
                 {
                     case HouseStatus.Rented:
                     case HouseStatus.Available:
@@ -96,12 +101,12 @@ public class House : BaseEntity
 
                     case HouseStatus.UnderMaintenance:
                     case HouseStatus.Unavailable:
-                        throw new RentalException(DefaultMessages.HouseIsAlreadyReserved);
+                        throw new HouseException(DefaultMessages.HouseIsAlreadyReserved);
                 }
                 break;
 
             case HouseStatus.UnderMaintenance:
-                switch (Status)
+                switch (currentHouseStatus)
                 {
                     case HouseStatus.Available:
                     case HouseStatus.Unavailable:
@@ -109,35 +114,35 @@ public class House : BaseEntity
 
                     case HouseStatus.Reserved:
                     case HouseStatus.Rented:
-                        throw new RentalException(DefaultMessages.HouseUnderMaintenance);
+                        throw new HouseException(DefaultMessages.HouseUnderMaintenance);
                 }
                 break;
 
             case HouseStatus.Rented:
-                //  Só é possível alugar se a situação atual não for reservada,alugada, em manutenção ou indisponível.
-                switch (Status)
+                //  Só é possível alugar a casa se a situação atual não for reservada,alugada, em manutenção ou indisponível.
+                switch (currentHouseStatus)
                 {
                     case HouseStatus.Available:
                     case HouseStatus.UnderMaintenance:
                         break;
 
                     case HouseStatus.Reserved:
-                        throw new RentalException(DefaultMessages.HouseReserved);
+                        throw new HouseException(DefaultMessages.HouseReserved);
 
                     case HouseStatus.Unavailable:
-                        throw new RentalException(DefaultMessages.HouseUnavailable);
+                        throw new HouseException(DefaultMessages.HouseUnavailable);
                 }
                 break;
 
             case HouseStatus.Unavailable:
-                switch (Status)
+                switch (currentHouseStatus)
                 {
                     case HouseStatus.Available:
                     case HouseStatus.UnderMaintenance:
                         break;
                     case HouseStatus.Reserved:
                     case HouseStatus.Rented:
-                        throw new RentalException(DefaultMessages.HouseUnavailable);
+                        throw new HouseException(DefaultMessages.HouseUnavailable);
                 }
                 break;
         }
