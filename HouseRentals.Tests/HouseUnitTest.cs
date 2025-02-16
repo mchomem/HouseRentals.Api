@@ -90,14 +90,12 @@ public class HouseUnitTest
         var imageFileName = "image.png";
 
         // Act & Assert
-        var exception = Assert.Throws<HouseException>(() =>
+        Assert.Throws<HouseMustBeReservedException>(() =>
         {
             var house = new House(address, dailyPrice, numberOfRooms, description, imageFileName);
             house.Update(address, dailyPrice, HouseStatus.Rented, numberOfRooms, description, imageFileName);
             house.SetStatus(HouseStatus.Available);
         });
-
-        Assert.Equal(DefaultMessages.HouseMmustBeReserved, exception.Message);
     }
 
     // TODO: continuar com os testes de variações de House Status.

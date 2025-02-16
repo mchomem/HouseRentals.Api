@@ -22,7 +22,7 @@ public class TenantService : ITenantService
         Tenant tenant = await _tenantRepository.GetAsync(id);
 
         if (tenant is null)
-            throw new TenantException(DefaultMessages.TenantNotFound);
+            throw new TenantNotFoundException();
 
         tenant.Delete();
 
@@ -56,7 +56,7 @@ public class TenantService : ITenantService
         Tenant tenant = await _tenantRepository.GetAsync(id);
 
         if (tenant is null)
-            throw new TenantException(DefaultMessages.TenantNotFound);
+            throw new TenantNotFoundException();
 
         tenant.Update(entity.FullName, entity.Email, entity.PhoneNumber, entity.BirthDate);
 

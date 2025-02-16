@@ -22,7 +22,7 @@ public class HouseService : IHouseService
         var house = await _houseRepository.GetAsync(id);
 
         if(house is null)
-            throw new HouseException(DefaultMessages.HouseNotFound);
+            throw new HouseNotFoundException();
 
         house.Delete();
 
@@ -57,7 +57,7 @@ public class HouseService : IHouseService
         var house = await _houseRepository.GetAsync(id);
 
         if (house is null)
-            throw new HouseException(DefaultMessages.HouseNotFound);
+            throw new HouseNotFoundException();
 
         house.Update(entity.Address, entity.DailyPrice, entity.Status, entity.NumberOfRooms, entity.Description, entity.ImageFileName);
 

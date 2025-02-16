@@ -63,9 +63,10 @@ public class TenantUnitTest
         DateTime underageBirthDate = DateTime.Today.AddYears(-17);
 
         // Act & Assert
-        var exception = Assert.Throws<TenantException>(() =>
-            new Tenant("John Doe", "johndoe@email.com", "1234567890", underageBirthDate));
-        Assert.Equal(DefaultMessages.TenantMustBeAtLeast18YearsOld, exception.Message);
+        Assert.Throws<TenantMustBeAtLeast18YearsOldException>(() =>
+        {
+            new Tenant("John Doe", "johndoe@email.com", "1234567890", underageBirthDate);
+        });
     }
 
     [Fact]
@@ -76,8 +77,9 @@ public class TenantUnitTest
         DateTime underageBirthDate = DateTime.Today.AddYears(-17);
 
         // Act & Assert
-        var exception = Assert.Throws<TenantException>(() =>
-            tenant.Update("John Doe", "johndoe@email.com", "1234567890", underageBirthDate));
-        Assert.Equal(DefaultMessages.TenantMustBeAtLeast18YearsOld, exception.Message);
+        Assert.Throws<TenantMustBeAtLeast18YearsOldException>(() =>
+        {
+            tenant.Update("John Doe", "johndoe@email.com", "1234567890", underageBirthDate);
+        });
     }
 }

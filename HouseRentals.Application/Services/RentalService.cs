@@ -1,4 +1,7 @@
-﻿namespace HouseRentals.Application.Services;
+﻿using HouseRentals.Domain.Exceptions.Rental;
+using HouseRentals.Domain.Exceptions.Tenant;
+
+namespace HouseRentals.Application.Services;
 
 public class RentalService : IRentalService
 {
@@ -24,12 +27,12 @@ public class RentalService : IRentalService
         var house = await _houseRepository.GetAsync(entity.HouseId);
 
         if (house is null)
-            throw new RentalException(DefaultMessages.HouseNotFound);
+            throw new HouseNotFoundException();
 
         var tenant = await _tenantRepository.GetAsync(entity.TenantId);
 
         if (tenant is null)
-            throw new RentalException(DefaultMessages.TenantNotFound);
+            throw new TenantNotFoundException();
 
         var rental = new Rental(entity.HouseId, house, entity.TenantId, tenant, entity.StartDate, entity.EndDate, entity.Observation);
 
@@ -80,17 +83,17 @@ public class RentalService : IRentalService
         var rental = await _rentalRepository.GetAsync(id);
 
         if (rental is null)
-            throw new RentalException(DefaultMessages.RentalNotFound);
+            throw new RentalNotFoundException();
 
         var house = await _houseRepository.GetAsync(entity.HouseId);
 
         if (house is null)
-            throw new RentalException(DefaultMessages.HouseNotFound);
+            throw new HouseNotFoundException();
 
         var tenant = await _tenantRepository.GetAsync(entity.TenantId);
 
         if (tenant is null)
-            throw new RentalException(DefaultMessages.TenantNotFound);
+            throw new TenantNotFoundException();
 
         rental.Update(entity.HouseId, house, entity.TenantId, tenant, entity.StartDate, entity.EndDate, entity.Discount,  entity.Observation);
 
@@ -102,17 +105,17 @@ public class RentalService : IRentalService
         var rental = await _rentalRepository.GetAsync(id);
 
         if (rental is null)
-            throw new RentalException(DefaultMessages.RentalNotFound);
+            throw new RentalNotFoundException();
 
         var house = await _houseRepository.GetAsync(rental.HouseId);
 
         if (house is null)
-            throw new RentalException(DefaultMessages.HouseNotFound);
+            throw new HouseNotFoundException();
 
         var tenant = await _tenantRepository.GetAsync(rental.TenantId);
 
         if (tenant is null)
-            throw new RentalException(DefaultMessages.TenantNotFound);
+            throw new TenantNotFoundException();
 
         rental.Rent(discont);
 
@@ -124,17 +127,17 @@ public class RentalService : IRentalService
         var rental = await _rentalRepository.GetAsync(id);
 
         if (rental is null)
-            throw new RentalException(DefaultMessages.RentalNotFound);
+            throw new RentalNotFoundException();
 
         var house = await _houseRepository.GetAsync(rental.HouseId);
 
         if (house is null)
-            throw new RentalException(DefaultMessages.HouseNotFound);
+            throw new HouseNotFoundException();
 
         var tenant = await _tenantRepository.GetAsync(rental.TenantId);
 
         if (tenant is null)
-            throw new RentalException(DefaultMessages.TenantNotFound);
+            throw new TenantNotFoundException();
 
         rental.UnRent();
 

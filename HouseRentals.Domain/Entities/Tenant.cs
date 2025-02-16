@@ -1,4 +1,6 @@
-﻿namespace HouseRentals.Domain.Entities;
+﻿using HouseRentals.Domain.Exceptions.Tenant;
+
+namespace HouseRentals.Domain.Entities;
 
 /// <summary>
 /// Representa um inquilino que aluga uma casa.
@@ -47,6 +49,6 @@ public class Tenant : BaseEntity
             age--;
 
         if (age < 18)
-            throw new TenantException(DefaultMessages.TenantMustBeAtLeast18YearsOld);
+            throw new TenantMustBeAtLeast18YearsOldException();
     }
 }

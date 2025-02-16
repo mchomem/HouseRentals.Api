@@ -88,7 +88,7 @@ public class House : BaseEntity
                         break;
 
                     case HouseStatus.Rented:
-                        throw new HouseException(DefaultMessages.HouseMmustBeReserved);
+                        throw new HouseMustBeReservedException();
                 }
                 break;
 
@@ -101,7 +101,7 @@ public class House : BaseEntity
 
                     case HouseStatus.UnderMaintenance:
                     case HouseStatus.Unavailable:
-                        throw new HouseException(DefaultMessages.HouseIsAlreadyReserved);
+                        throw new HouseIsAlreadyReservedException();
                 }
                 break;
 
@@ -114,7 +114,7 @@ public class House : BaseEntity
 
                     case HouseStatus.Reserved:
                     case HouseStatus.Rented:
-                        throw new HouseException(DefaultMessages.HouseUnderMaintenance);
+                        throw new HouseUnderMaintenanceException();
                 }
                 break;
 
@@ -127,10 +127,10 @@ public class House : BaseEntity
                         break;
 
                     case HouseStatus.Reserved:
-                        throw new HouseException(DefaultMessages.HouseReserved);
+                        throw new HouseReservedException();
 
                     case HouseStatus.Unavailable:
-                        throw new HouseException(DefaultMessages.HouseUnavailable);
+                        throw new HouseUnavailableException();
                 }
                 break;
 
@@ -142,7 +142,7 @@ public class House : BaseEntity
                         break;
                     case HouseStatus.Reserved:
                     case HouseStatus.Rented:
-                        throw new HouseException(DefaultMessages.HouseUnavailable);
+                        throw new HouseUnavailableException();
                 }
                 break;
         }

@@ -1,4 +1,4 @@
-﻿namespace HouseRentals.Domain.Exceptions;
+﻿namespace HouseRentals.Domain.Exceptions.House;
 
 public class HouseException : Exception
 {

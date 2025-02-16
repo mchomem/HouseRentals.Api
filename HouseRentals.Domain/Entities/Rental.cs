@@ -1,4 +1,6 @@
-﻿namespace HouseRentals.Domain.Entities;
+﻿using HouseRentals.Domain.Exceptions.Rental;
+
+namespace HouseRentals.Domain.Entities;
 
 /// <summary>
 /// Representa o aluguel de uma casa.
@@ -68,7 +70,7 @@ public class Rental : BaseEntity
     private decimal CheckDiscount(decimal discount)
     {
         if (discount < 0 || discount > 100)
-            throw new RentalException(DefaultMessages.RentalInvalidDiscount);
+            throw new RentalInvalidDiscountException();
 
         return discount;
     }

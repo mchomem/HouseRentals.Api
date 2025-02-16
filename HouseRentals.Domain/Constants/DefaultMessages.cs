@@ -7,9 +7,9 @@ public class DefaultMessages
 
     public const string HouseNotFound = "House Not found.";
     public const string HouseReserved = "House is reserved.";
-    public const string HouseAlreadyRented = "House already rented.";
-    public const string HouseMmustBeReserved = "House must be reserved.";
-    public const string HouseIsAlreadyReserved = "House is already reserved";
+    public const string HouseAlreadyRented = "House is already rented.";
+    public const string HouseMustBeReserved = "House must be reserved.";
+    public const string HouseIsAlreadyReserved = "House is already reserved.";
     public const string HouseUnderMaintenance = "House under maintenance.";
     public const string HouseUnavailable = "House unavailable.";
 
