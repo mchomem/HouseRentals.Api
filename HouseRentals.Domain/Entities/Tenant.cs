@@ -40,7 +40,7 @@ public class Tenant : BaseEntity
     public void Delete()
         => Deleted = true;
 
-    private void CheckIfMinor(DateTime birthDate)
+    public void CheckIfMinor(DateTime birthDate)
     {
         var today = DateTime.Today;
         var age = today.Year - birthDate.Year;

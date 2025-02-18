@@ -97,6 +97,4 @@ public class HouseUnitTest
             house.SetStatus(HouseStatus.Available);
         });
     }
-
-    // TODO: continuar com os testes de variações de House Status.
 }

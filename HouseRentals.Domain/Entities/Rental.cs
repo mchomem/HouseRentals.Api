@@ -1,6 +1,4 @@
-﻿using HouseRentals.Domain.Exceptions.Rental;
-
-namespace HouseRentals.Domain.Entities;
+﻿namespace HouseRentals.Domain.Entities;
 
 /// <summary>
 /// Representa o aluguel de uma casa.
@@ -55,7 +53,7 @@ public class Rental : BaseEntity
     /// <summary>
     /// Calcula o preço total com base na duração do aluguel.
     /// </summary>
-    private decimal CalculateTotalPrice()
+    public decimal CalculateTotalPrice()
     {
         var days = (EndDate - StartDate).Days;
         return days * House.DailyPrice;
@@ -67,7 +65,7 @@ public class Rental : BaseEntity
     /// <param name="discount"></param>
     /// <returns></returns>
     /// <exception cref="RentalException"></exception>
-    private decimal CheckDiscount(decimal discount)
+    public decimal CheckDiscount(decimal discount)
     {
         if (discount < 0 || discount > 100)
             throw new RentalInvalidDiscountException();
@@ -78,7 +76,6 @@ public class Rental : BaseEntity
     public void Rent(decimal discount)
     {
         House.SetStatus(HouseStatus.Rented);
-
         Discount = CheckDiscount(discount);
         TotalPrice = CalculateTotalPrice();
         TotalToPay = TotalPrice - (TotalPrice * Discount / 100);
