@@ -12,7 +12,8 @@ public class DefaultMessages
     public const string HouseIsAlreadyReserved = "House is already reserved.";
     public const string HouseUnderMaintenance = "House under maintenance.";
     public const string HouseUnavailable = "House unavailable.";
+    public const string HouseInvalidRentPrice = "House invalid Rent Price.";
 
     public const string RentalNotFound = "Rental not found.";
-    public const string RentalInvalidDiscount = "Invalid discount";
+    public const string RentalInvalidDiscount = "Invalid discount.";
 }

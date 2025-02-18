@@ -44,7 +44,12 @@ public class House : BaseEntity
     /// Atualiza o preço do aluguel.
     /// </summary>
     public void UpdateRentPrice(decimal newPrice)
-        => DailyPrice = newPrice;
+    {
+        if (newPrice < 0 || newPrice > 100)
+            throw new HouseInvalidRentPrice();
+
+        DailyPrice = newPrice;
+    }
 
     /// <summary>
     /// Configura um estado da casa.
