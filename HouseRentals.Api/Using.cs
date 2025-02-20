@@ -1,6 +1,10 @@
-﻿global using HouseRentals.Application.DTOs;
+﻿global using HouseRentals.Api.Middlewares;
+global using HouseRentals.Api.Responses;
+global using HouseRentals.Application.DTOs;
 global using HouseRentals.Application.Filters;
 global using HouseRentals.Application.Interfaces;
 global using HouseRentals.IoC;
 global using Microsoft.AspNetCore.Mvc;
+global using System.Net;
+global using System.Text.Json;
 global using System.Text.Json.Serialization;

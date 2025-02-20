@@ -1,6 +1,5 @@
 ﻿namespace HouseRentals.Api.Controllers;
 
-
 [Route("api/[controller]")]
 [ApiController]
 public class HouseController : ControllerBase
@@ -13,35 +12,43 @@ public class HouseController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllAsync([FromQuery] HouseFilter filter)
     {
-        IEnumerable<HouseDto> houses = await _houseService.GetAllAsync(filter);
-        return Ok(houses);
+        var houses = await _houseService.GetAllAsync(filter);
+
+        if (!houses.Any())
+            return NotFound(new ApiResponse<IEnumerable<HouseDto>>(null!, "No house found"));
+
+        return Ok(new ApiResponse<IEnumerable<HouseDto>>(houses));
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(long id)
     {
         var house = await _houseService.GetAsync(id);
-        return Ok(house);
+
+        if (house is null)
+            return NotFound(new ApiResponse<IEnumerable<HouseDto>>(null!, "No house found"));
+
+        return Ok(new ApiResponse<HouseDto>(house));
     }
 
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] HouseInsertDto houseDto)
     {
         var house = await _houseService.CreateAsync(houseDto);
-        return Ok(house);
+        return Ok(new ApiResponse<HouseDto>(house));
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(long id, [FromBody] HouseDto houseDto)
     {
         var house = await _houseService.UpdateAsync(id, houseDto);
-        return Ok(house);
+        return Ok(new ApiResponse<HouseDto>(house));
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(long id)
     {
         var house = await _houseService.DeleteAsync(id);
-        return Ok(house);
+        return Ok(new ApiResponse<HouseDto>(house));
     }
 }

@@ -13,34 +13,42 @@ public class TenantController : ControllerBase
     public async Task<IActionResult> GetAlAsync([FromQuery] TenantFilter filter)
     {
         var tenants = await _tenantService.GetAllAsync(filter);
-        return Ok(tenants);
+
+        if(!tenants.Any())
+            return NotFound(new ApiResponse<IEnumerable<TenantDto>>(null!, "No tenant found"));
+
+        return NotFound(new ApiResponse<IEnumerable<TenantDto>>(tenants));
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAsyn(long id)
     {
         var tenant = await _tenantService.GetAsync(id);
-        return Ok(tenant);
+
+        if(tenant is null)
+            return NotFound(new ApiResponse<TenantDto>(null!, "No tenant found"));
+
+        return NotFound(new ApiResponse<TenantDto>(tenant));
     }
 
     [HttpPost]
     public async Task<IActionResult> PostAsync(TenantInsertDto tenantDto)
     {
         var tenant = await _tenantService.CreateAsync(tenantDto);
-        return Ok(tenant);
+        return NotFound(new ApiResponse<TenantDto>(tenant));
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, TenantDto tenantDto)
     {
         var tenant = await _tenantService.UpdateAsync(id, tenantDto);
-        return Ok(tenant);
+        return NotFound(new ApiResponse<TenantDto>(tenant));
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var tenant = await _tenantService.DeleteAsync(id);
-        return Ok(tenant);
+        return NotFound(new ApiResponse<TenantDto>(tenant));
     }        
 }
