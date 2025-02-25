@@ -1,6 +1,4 @@
-﻿using HouseRentals.Domain.Exceptions.Tenant;
-
-namespace HouseRentals.Domain.Entities;
+﻿namespace HouseRentals.Domain.Entities;
 
 /// <summary>
 /// Representa um inquilino que aluga uma casa.
@@ -38,7 +36,9 @@ public class Tenant : BaseEntity
     }
 
     public void Delete()
-        => Deleted = true;
+    {
+        Deleted = true;
+    }
 
     public void CheckIfMinor(DateTime birthDate)
     {

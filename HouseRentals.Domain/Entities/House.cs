@@ -38,7 +38,9 @@ public class House : BaseEntity
     }
 
     public void Delete()
-        => Deleted = true;
+    {
+        Deleted = true;
+    }
 
     /// <summary>
     /// Atualiza o preço do aluguel.
