@@ -26,6 +26,9 @@ public static class DependenceInjectionApi
     public static IServiceCollection AddInfrastructureSwagger(this IServiceCollection services)
     {
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+        var linkedinProfile = "https://www.linkedin.com/in/misael-da-costa-homem-8b07a158/";
+
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(options => {
             options.SwaggerDoc(
@@ -39,7 +42,7 @@ public static class DependenceInjectionApi
                     {
                         Name = "Misael C. Homem",
                         Email = "misael.homem@gmail.com",
-                        Url = new Uri("https://www.linkedin.com/in/misael-da-costa-homem-8b07a158/")
+                        Url = new Uri(linkedinProfile)
                     },
                 });
 

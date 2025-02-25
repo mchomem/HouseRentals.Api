@@ -1,7 +1,4 @@
-﻿using HouseRentals.Domain.Exceptions.Rental;
-using HouseRentals.Domain.Exceptions.Tenant;
-
-namespace HouseRentals.Application.Services;
+﻿namespace HouseRentals.Application.Services;
 
 public class RentalService : IRentalService
 {
