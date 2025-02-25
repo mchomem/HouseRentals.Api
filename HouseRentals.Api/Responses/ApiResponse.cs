@@ -4,7 +4,7 @@ public class ApiResponse<T> where T : class
 {
     public bool Success { get; set; }
     public string Message { get; set; }
-    public T Data { get; set; }
+    public T Data { get; set; } = null!;
     public List<string> Errors { get; set; } = new();
 
     public ApiResponse(T data, string message = "Operation successfully completed")

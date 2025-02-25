@@ -7,7 +7,9 @@ public class RentalController : ControllerBase
     private readonly IRentalService _rentalService;
 
     public RentalController(IRentalService rentalService)
-        => _rentalService = rentalService;
+    {
+        _rentalService = rentalService;
+    }
 
     [HttpGet]
     public async Task<IActionResult> GetAllAsync([FromQuery] RentalFilter filter)
