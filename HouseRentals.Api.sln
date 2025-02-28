@@ -5,13 +5,13 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Api", "HouseRentals.Api\HouseRentals.Api.csproj", "{F96AA05B-F9E9-4D16-8364-3FB4B5CC02E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Database", "HouseRentals.Database\HouseRentals.Database.csproj", "{809DCB43-9F68-426E-ABF0-92C89204782B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Infrastructure.Persistence", "HouseRentals.Infrastructure.Persistence\HouseRentals.Infrastructure.Persistence.csproj", "{809DCB43-9F68-426E-ABF0-92C89204782B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.IoC", "HouseRentals.IoC\HouseRentals.IoC.csproj", "{6983F878-59CF-42E2-828F-BCDBC5EAE6E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Infrastructure.IoC", "HouseRentals.Infrastructure.IoC\HouseRentals.Infrastructure.IoC.csproj", "{6983F878-59CF-42E2-828F-BCDBC5EAE6E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Domain", "HouseRentals.Domain\HouseRentals.Domain.csproj", "{65D306E4-8074-4E49-9B07-88331FECAC17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Core.Domain", "HouseRentals.Core.Domain\HouseRentals.Core.Domain.csproj", "{65D306E4-8074-4E49-9B07-88331FECAC17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Application", "HouseRentals.Application\HouseRentals.Application.csproj", "{8A9C6066-6917-452F-A36F-74335E69E01A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Core.Application", "HouseRentals.Core.Application\HouseRentals.Core.Application.csproj", "{8A9C6066-6917-452F-A36F-74335E69E01A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Core", "1 - Core", "{2EF08330-24C2-46E4-80C1-040866F48118}"
 EndProject
@@ -64,5 +64,8 @@ Global
 		{65D306E4-8074-4E49-9B07-88331FECAC17} = {2EF08330-24C2-46E4-80C1-040866F48118}
 		{8A9C6066-6917-452F-A36F-74335E69E01A} = {2EF08330-24C2-46E4-80C1-040866F48118}
 		{8743843B-0708-4B10-BC48-B8DB1D27493C} = {61C608E3-D05F-4F5D-9368-B3B97004567B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3E9B964-4FA9-48DA-ACCD-E539FA9D2949}
 	EndGlobalSection
 EndGlobal

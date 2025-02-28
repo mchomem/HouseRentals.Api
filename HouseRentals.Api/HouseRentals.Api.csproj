@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\HouseRentals.IoC\HouseRentals.IoC.csproj" />
+	  <ProjectReference Include="..\HouseRentals.Infrastructure.IoC\HouseRentals.Infrastructure.IoC.csproj" />
 	</ItemGroup>
 
 </Project>

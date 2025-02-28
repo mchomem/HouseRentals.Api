@@ -1,0 +1,11 @@
+﻿global using AutoMapper;
+global using HouseRentals.Core.Application.DTOs;
+global using HouseRentals.Core.Application.Filters;
+global using HouseRentals.Core.Application.Interfaces;
+global using HouseRentals.Core.Domain.Entities;
+global using HouseRentals.Core.Domain.Enuns;
+global using HouseRentals.Core.Domain.Exceptions.House;
+global using HouseRentals.Core.Domain.Exceptions.Rental;
+global using HouseRentals.Core.Domain.Exceptions.Tenant;
+global using HouseRentals.Core.Domain.Interfaces;
+global using System.Linq.Expressions;

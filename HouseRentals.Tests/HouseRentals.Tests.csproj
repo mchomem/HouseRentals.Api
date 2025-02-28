@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HouseRentals.Domain\HouseRentals.Domain.csproj" />
+    <ProjectReference Include="..\HouseRentals.Core.Domain\HouseRentals.Core.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
