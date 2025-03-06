@@ -48,9 +48,9 @@ public class RentalController : ControllerBase
     }
 
     [HttpPut("rent")]
-    public async Task<IActionResult> PutRentAsync([FromQuery] long id, [FromQuery] decimal discount)
+    public async Task<IActionResult> PutRentAsync([FromQuery] long rentalId, [FromQuery] long tenantId, [FromQuery] decimal discount)
     {
-        var rental = await _rentalService.RentAsync(id, discount);
+        var rental = await _rentalService.RentAsync(rentalId, tenantId, discount);
         return Ok(new ApiResponse<RentalDto>(rental));
     }
 

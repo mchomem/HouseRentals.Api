@@ -16,4 +16,5 @@ public class DefaultMessages
 
     public const string RentalNotFound = "Rental not found.";
     public const string RentalInvalidDiscount = "Invalid discount.";
+    public const string RentalDaysEqualsToZero = "Rental days must be greater than zero.";
 }

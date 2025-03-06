@@ -97,9 +97,9 @@ public class RentalService : IRentalService
         return _mapper.Map<RentalDto>(await _rentalRepository.UpdateAsync(rental));
     }
 
-    public async Task<RentalDto> RentAsync(long id, decimal discont)
+    public async Task<RentalDto> RentAsync(long rentalId, long tenantId, decimal discont)
     {
-        var rental = await _rentalRepository.GetAsync(id);
+        var rental = await _rentalRepository.GetAsync(rentalId);
 
         if (rental is null)
             throw new RentalNotFoundException();
@@ -109,12 +109,17 @@ public class RentalService : IRentalService
         if (house is null)
             throw new HouseNotFoundException();
 
-        var tenant = await _tenantRepository.GetAsync(rental.TenantId);
+        var rentalTenant = await _tenantRepository.GetAsync(rental.TenantId);
 
-        if (tenant is null)
+        if (rentalTenant is null)
             throw new TenantNotFoundException();
 
-        rental.Rent(discont);
+        var informedTenant = await _tenantRepository.GetAsync(tenantId);
+
+        if (informedTenant is null)
+            throw new TenantNotFoundException();
+
+        rental.Rent(discont, rentalTenant, informedTenant);
 
         return _mapper.Map<RentalDto>(await _rentalRepository.UpdateAsync(rental));
     }
