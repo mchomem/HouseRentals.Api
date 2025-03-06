@@ -92,7 +92,7 @@ public class RentalService : IRentalService
         if (tenant is null)
             throw new TenantNotFoundException();
 
-        rental.Update(entity.HouseId, house, entity.TenantId, tenant, entity.StartDate, entity.EndDate, entity.Discount,  entity.Observation);
+        rental.Update(entity.HouseId, house, entity.TenantId, tenant, entity.StartDate, entity.EndDate, entity.Discount, entity.Observation!);
 
         return _mapper.Map<RentalDto>(await _rentalRepository.UpdateAsync(rental));
     }

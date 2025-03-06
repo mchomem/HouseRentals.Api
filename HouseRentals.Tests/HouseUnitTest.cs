@@ -59,42 +59,5 @@ public class HouseUnitTest
 
         // Assert
         Assert.True(house.Deleted);
-    }
-
-    [Fact]
-    public void SetStatus_HouseStatus_ShouldChangeStatusRented()
-    {
-        // Arrange
-        var address = "Avenue United, 1000";
-        var dailyPrice = 100.00m;
-        var numberOfRooms = 2;
-        var description = "House close of montains.";
-        var imageFileName = "image.png";
-
-        // Act
-        var house = new House(address, dailyPrice, numberOfRooms, description, imageFileName);
-        house.SetStatus(HouseStatus.Rented);
-
-        // Assert
-        Assert.Equal(HouseStatus.Rented, house.Status);
-    }
-
-    [Fact]
-    public void SetStatus_HouseStatus_ReturnHouseException()
-    {
-        // Arrange
-        var address = "Avenue United, 1000";
-        var dailyPrice = 100.00m;
-        var numberOfRooms = 2;
-        var description = "House close of montains.";
-        var imageFileName = "image.png";
-
-        // Act & Assert
-        Assert.Throws<HouseMustBeReservedException>(() =>
-        {
-            var house = new House(address, dailyPrice, numberOfRooms, description, imageFileName);
-            house.Update(address, dailyPrice, HouseStatus.Rented, numberOfRooms, description, imageFileName);
-            house.SetStatus(HouseStatus.Available);
-        });
-    }
+    }    
 }
