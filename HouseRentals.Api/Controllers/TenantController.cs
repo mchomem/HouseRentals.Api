@@ -17,7 +17,7 @@ public class TenantController : ControllerBase
         var tenants = await _tenantService.GetAllAsync(filter);
 
         if(!tenants.Any())
-            return NotFound(new ApiResponse<IEnumerable<TenantDto>>(null!, "No tenant found"));
+            return NotFound(new ApiResponse<IEnumerable<TenantDto>>(null!, DefaultMessages.TenantNotFound));
 
         return Ok(new ApiResponse<IEnumerable<TenantDto>>(tenants));
     }
@@ -28,7 +28,7 @@ public class TenantController : ControllerBase
         var tenant = await _tenantService.GetAsync(id);
 
         if(tenant is null)
-            return NotFound(new ApiResponse<TenantDto>(null!, "No tenant found"));
+            return NotFound(new ApiResponse<TenantDto>(null!, DefaultMessages.TenantNotFound));
 
         return Ok(new ApiResponse<TenantDto>(tenant));
     }

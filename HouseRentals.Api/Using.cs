@@ -3,6 +3,7 @@ global using HouseRentals.Api.Responses;
 global using HouseRentals.Core.Application.DTOs;
 global using HouseRentals.Core.Application.Filters;
 global using HouseRentals.Core.Application.Interfaces;
+global using HouseRentals.Core.Domain.Constants;
 global using HouseRentals.IoC;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Net;

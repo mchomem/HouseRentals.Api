@@ -7,7 +7,9 @@ public class HouseController : ControllerBase
     private readonly IHouseService _houseService;
 
     public HouseController(IHouseService houseService)
-        => _houseService = houseService;
+    {
+        _houseService = houseService;
+    }
 
     [HttpGet]
     public async Task<IActionResult> GetAllAsync([FromQuery] HouseFilter filter)
@@ -15,7 +17,7 @@ public class HouseController : ControllerBase
         var houses = await _houseService.GetAllAsync(filter);
 
         if (!houses.Any())
-            return NotFound(new ApiResponse<IEnumerable<HouseDto>>(null!, "No house found"));
+            return NotFound(new ApiResponse<IEnumerable<HouseDto>>(null!, DefaultMessages.HouseNotFound));
 
         return Ok(new ApiResponse<IEnumerable<HouseDto>>(houses));
     }
@@ -26,7 +28,7 @@ public class HouseController : ControllerBase
         var house = await _houseService.GetAsync(id);
 
         if (house is null)
-            return NotFound(new ApiResponse<IEnumerable<HouseDto>>(null!, "No house found"));
+            return NotFound(new ApiResponse<IEnumerable<HouseDto>>(null!, DefaultMessages.HouseNotFound));
 
         return Ok(new ApiResponse<HouseDto>(house));
     }

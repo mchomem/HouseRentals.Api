@@ -17,7 +17,7 @@ public class RentalController : ControllerBase
         var rentals = await _rentalService.GetAllAsync(filter);
 
         if (!rentals.Any())
-            return NotFound(new ApiResponse<IEnumerable<RentalDto>>(null!, "No rental found"));
+            return NotFound(new ApiResponse<IEnumerable<RentalDto>>(null!, DefaultMessages.RentalNotFound));
 
         return Ok(new ApiResponse<IEnumerable<RentalDto>>(rentals));
     }
@@ -28,7 +28,7 @@ public class RentalController : ControllerBase
         var rental = await _rentalService.GetAsync(id);
 
         if (rental is null)
-            return NotFound(new ApiResponse<IEnumerable<RentalDto>>(null!, "No rental found"));
+            return NotFound(new ApiResponse<IEnumerable<RentalDto>>(null!, DefaultMessages.RentalNotFound));
 
         return Ok(new ApiResponse<RentalDto>(rental));
     }
