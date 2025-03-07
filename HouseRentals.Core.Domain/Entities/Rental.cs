@@ -77,7 +77,7 @@ public class Rental : BaseEntity
     /// </summary>
     /// <param name="discount"></param>
     /// <returns></returns>
-    /// <exception cref="RentalException"></exception>
+    /// <exception cref="RentalInvalidDiscountException"></exception>
     public decimal CheckDiscount(decimal discount)
     {
         if (discount < 0 || discount > 100)
