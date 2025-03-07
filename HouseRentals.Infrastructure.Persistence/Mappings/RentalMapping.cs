@@ -65,21 +65,20 @@ public class RentalMapping : IEntityTypeConfiguration<Rental>
             .HasColumnType("datetime")
             .IsRequired(false);
 
-
         #region Foreign Key mapping for Rental table.
 
         builder
             .HasOne(r => r.House)
             .WithMany(h => h.Rentals)
             .HasForeignKey(r => r.HouseId)
-            .HasConstraintName("FK_Rental_House")
+            .HasConstraintName("FK_Rental_House_HouseId")
             .OnDelete(DeleteBehavior.NoAction);
 
         builder
             .HasOne(r => r.Tenant)
             .WithMany(t => t.Rentals)
             .HasForeignKey(r => r.TenantId)
-            .HasConstraintName("FK_Rental_Tenant")
+            .HasConstraintName("FK_Rental_Tenant_TenantId")
             .OnDelete(DeleteBehavior.NoAction);
 
         #endregion
