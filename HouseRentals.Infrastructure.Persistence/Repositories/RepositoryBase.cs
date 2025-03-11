@@ -25,17 +25,17 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return _AppDbContext.Entry(entity).Entity;
     }
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter, string includes = "")
+    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter, IEnumerable<string>? includes = null)
     {
         IQueryable<TEntity> query = _DbSet
             .AsQueryable()
             .AsNoTracking()
             .Where(filter);
 
-        if (!string.IsNullOrEmpty(includes))
+        if (includes != null)
         {
-            foreach (var include in includes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                query = query.Include(include);
+            foreach(var include in includes)
+                query = query.Include(include);            
         }
 
         return await query.ToListAsync();
@@ -47,15 +47,18 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return entity!;
     }
 
-    public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, string includes = "")
+    public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, IEnumerable<string>? includes = null)
     {
         IQueryable<TEntity> query = _DbSet
                 .AsQueryable()
                 .Where(filter)
                 .AsNoTracking();
 
-        foreach (var include in includes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            query = query.Include(include);
+        if (includes != null)
+        {
+            foreach (var include in includes)
+                query = query.Include(include);
+        }
 
         var entity = await query.FirstOrDefaultAsync();
         return entity!;

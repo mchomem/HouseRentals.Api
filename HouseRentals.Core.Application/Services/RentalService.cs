@@ -65,14 +65,16 @@ public class RentalService : IRentalService
                 && (!filter.RentPaymentDateEnd.HasValue) || x.RentPaymentDate <= filter.RentPaymentDateEnd
             );
 
-        var rentals = await _rentalRepository.GetAllAsync(expressionFilter, $"{nameof(Tenant)},{nameof(House)}");
+        IEnumerable<string> includes = new List<string>() { nameof(Tenant), nameof(House) };
+        var rentals = await _rentalRepository.GetAllAsync(expressionFilter, includes);
         return _mapper.Map<IEnumerable<RentalDto>>(rentals);
     }
 
     public async Task<RentalDto> GetAsync(long id)
     {
-        var remtal = await _rentalRepository.GetAsync(x => x.Id == id, $"{nameof(Tenant)},{nameof(House)}");
-        return _mapper.Map<RentalDto>(remtal);
+        IEnumerable<string> includes = new List<string>() { nameof(Tenant) , nameof(House) };    
+        var rental = await _rentalRepository.GetAsync(x => x.Id == id, includes);
+        return _mapper.Map<RentalDto>(rental);
     }
 
     public async Task<RentalDto> UpdateAsync(long id, RentalUpdateDto entity)

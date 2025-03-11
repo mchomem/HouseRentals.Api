@@ -29,7 +29,7 @@ public class TenantService : ITenantService
         return _mapper.Map<TenantDto>(await _tenantRepository.UpdateAsync(tenant));
     }
 
-    public async Task<IEnumerable<TenantDto>> GetAllAsync(TenantFilter filter, string includes = "")
+    public async Task<IEnumerable<TenantDto>> GetAllAsync(TenantFilter filter)
     {
         Expression<Func<Tenant, bool>> expressionFilter =
             x => (

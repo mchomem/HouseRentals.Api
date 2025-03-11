@@ -27,7 +27,7 @@ public class TenantRepository : ITenantRepository
         return tenant;
     }
 
-    public async Task<IEnumerable<Tenant>> GetAllAsync(Expression<Func<Tenant, bool>> filter, string includes = "")
+    public async Task<IEnumerable<Tenant>> GetAllAsync(Expression<Func<Tenant, bool>> filter, IEnumerable<string>? includes = null)
     {
         var tenants = await _repositoryBase.GetAllAsync(filter, includes);
         return tenants;

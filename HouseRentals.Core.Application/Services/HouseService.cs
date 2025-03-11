@@ -29,7 +29,7 @@ public class HouseService : IHouseService
         return _mapper.Map<HouseDto>(await _houseRepository.UpdateAsync(house));
     }
 
-    public async Task<IEnumerable<HouseDto>> GetAllAsync(HouseFilter filter, string includes = "")
+    public async Task<IEnumerable<HouseDto>> GetAllAsync(HouseFilter filter)
     {
         Expression<Func<House, bool>> expressionFilter =
             x => (
