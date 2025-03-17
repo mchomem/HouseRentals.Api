@@ -65,14 +65,20 @@ public class RentalService : IRentalService
                 && (!filter.RentPaymentDateEnd.HasValue) || x.RentPaymentDate <= filter.RentPaymentDateEnd
             );
 
-        IEnumerable<string> includes = new List<string>() { nameof(Tenant), nameof(House) };
+        IEnumerable<Expression<Func<Rental, object>>> includes = new List<Expression<Func<Rental, object>>>()
+        {
+            x => x.Tenant, x => x.House
+        };
         var rentals = await _rentalRepository.GetAllAsync(expressionFilter, includes);
         return _mapper.Map<IEnumerable<RentalDto>>(rentals);
     }
 
     public async Task<RentalDto> GetAsync(long id)
     {
-        IEnumerable<string> includes = new List<string>() { nameof(Tenant) , nameof(House) };    
+        IEnumerable<Expression<Func<Rental, object>>> includes = new List<Expression<Func<Rental, object>>>()
+        {
+            x => x.Tenant, x => x.House
+        };
         var rental = await _rentalRepository.GetAsync(x => x.Id == id, includes);
         return _mapper.Map<RentalDto>(rental);
     }

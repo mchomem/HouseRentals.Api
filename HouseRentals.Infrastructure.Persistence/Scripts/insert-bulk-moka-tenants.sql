@@ -2,8 +2,10 @@ use HouseRentals
 go
 
 delete from Tenant
+go
 
 dbcc checkident ('Tenant', RESEED, 0);
+go
 
 declare @tempFirstPersonNames table(id int identity(1 ,1), [name] varchar(15))
 insert into @tempFirstPersonNames

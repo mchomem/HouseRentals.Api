@@ -15,7 +15,7 @@ public class RentalRepository : IRentalRepository
         return rental;
     }
 
-    public async Task<IEnumerable<Rental>> GetAllAsync(Expression<Func<Rental, bool>> filter, IEnumerable<string>? includes = null)
+    public async Task<IEnumerable<Rental>> GetAllAsync(Expression<Func<Rental, bool>> filter, IEnumerable<Expression<Func<Rental, object>>>? includes = null)
     {
         var rental = await _repositoryBase.GetAllAsync(filter, includes);
         return rental;
@@ -27,7 +27,7 @@ public class RentalRepository : IRentalRepository
         return rental;
     }
 
-    public async Task<Rental> GetAsync(Expression<Func<Rental, bool>> filter, IEnumerable<string>? includes = null)
+    public async Task<Rental> GetAsync(Expression<Func<Rental, bool>> filter, IEnumerable<Expression<Func<Rental, object>>>? includes = null)
     {
         var rental = await _repositoryBase.GetAsync(filter, includes);
         return rental;

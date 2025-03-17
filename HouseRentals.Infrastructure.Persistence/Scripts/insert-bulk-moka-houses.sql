@@ -2,8 +2,10 @@ use HouseRentals
 go
 
 delete from House
+go
 
 dbcc checkident ('House', RESEED, 0);
+go
 
 -- insert bulk Houses
 declare @maxRecords int = 100

@@ -27,7 +27,7 @@ public class HouseRepository : IHouseRepository
         return house;
     }
 
-    public async Task<IEnumerable<House>> GetAllAsync(Expression<Func<House, bool>> filter, IEnumerable<string>? includes = null)
+    public async Task<IEnumerable<House>> GetAllAsync(Expression<Func<House, bool>> filter, IEnumerable<Expression<Func<House, object>>>? includes = null)
     {
         var houses = await _repositoryBase.GetAllAsync(filter, includes);
         return houses;

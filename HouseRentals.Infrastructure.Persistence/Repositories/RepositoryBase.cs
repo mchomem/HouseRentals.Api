@@ -25,7 +25,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return _AppDbContext.Entry(entity).Entity;
     }
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter, IEnumerable<string>? includes = null)
+    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter, IEnumerable<Expression<Func<TEntity, object>>>? includes = null)
     {
         IQueryable<TEntity> query = _DbSet
             .AsQueryable()
@@ -34,8 +34,8 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
 
         if (includes != null)
         {
-            foreach(var include in includes)
-                query = query.Include(include);            
+            foreach (var include in includes)
+                query = query.Include(include);
         }
 
         return await query.ToListAsync();
@@ -47,7 +47,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         return entity!;
     }
 
-    public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, IEnumerable<string>? includes = null)
+    public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter, IEnumerable<Expression<Func<TEntity, object>>>? includes = null)
     {
         IQueryable<TEntity> query = _DbSet
                 .AsQueryable()
