@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Presentation", "3 - Pre
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Tests", "0 - Tests", "{61C608E3-D05F-4F5D-9368-B3B97004567B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.Tests", "HouseRentals.Tests\HouseRentals.Tests.csproj", "{8743843B-0708-4B10-BC48-B8DB1D27493C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.UnitTests", "HouseRentals.UnitTests\HouseRentals.UnitTests.csproj", "{8743843B-0708-4B10-BC48-B8DB1D27493C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
