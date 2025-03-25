@@ -82,4 +82,32 @@ public class TenantUnitTest
             tenant.Update("John Doe", "johndoe@email.com", "1234567890", underageBirthDate);
         });
     }
+
+    [Fact]
+    public void CheckIfMinor_MinorAge_ShouldThrowException()
+    {
+        // Arrange
+        var tenant = new Tenant("John Doe", "old@email.com", "1234567890", DateTime.Today.AddYears(-20));
+        DateTime newBirthDate = DateTime.Now.AddMonths(-3);
+
+        // Act & Assert
+        Assert.Throws<TenantMustBeAtLeast18YearsOldException>(() =>
+        {
+            tenant.CheckIfMinor(newBirthDate);
+        });
+    }
+
+    [Fact]
+    public void CheckIfMinor_MajorAge_ShouldThrowException()
+    {
+        // Arrange
+        var birthDate = DateTime.Today.AddYears(-20);
+        var tenant = new Tenant("John Doe", "old@email.com", "1234567890", birthDate);
+
+        // Act & Assert
+        tenant.CheckIfMinor(tenant.BirthDate);
+
+        // Assert
+        Assert.Equal(tenant.BirthDate, birthDate);
+    }
 }

@@ -47,7 +47,7 @@ public class House : BaseEntity
     /// </summary>
     public void UpdateRentPrice(decimal newPrice)
     {
-        if (newPrice < 0 || newPrice > 100)
+        if (newPrice <= 0 || newPrice > 100)
             throw new HouseInvalidRentPrice();
 
         DailyPrice = newPrice;

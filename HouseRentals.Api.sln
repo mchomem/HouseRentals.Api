@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Tests", "0 - Tests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.UnitTests", "HouseRentals.UnitTests\HouseRentals.UnitTests.csproj", "{8743843B-0708-4B10-BC48-B8DB1D27493C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HouseRentals.IntegrationTests", "HouseRentals.IntegrationTests\HouseRentals.IntegrationTests.csproj", "{DDDC8FC5-E835-424D-A9AE-E1A5B2922652}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{8743843B-0708-4B10-BC48-B8DB1D27493C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8743843B-0708-4B10-BC48-B8DB1D27493C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8743843B-0708-4B10-BC48-B8DB1D27493C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDDC8FC5-E835-424D-A9AE-E1A5B2922652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDDC8FC5-E835-424D-A9AE-E1A5B2922652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDDC8FC5-E835-424D-A9AE-E1A5B2922652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDDC8FC5-E835-424D-A9AE-E1A5B2922652}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{65D306E4-8074-4E49-9B07-88331FECAC17} = {2EF08330-24C2-46E4-80C1-040866F48118}
 		{8A9C6066-6917-452F-A36F-74335E69E01A} = {2EF08330-24C2-46E4-80C1-040866F48118}
 		{8743843B-0708-4B10-BC48-B8DB1D27493C} = {61C608E3-D05F-4F5D-9368-B3B97004567B}
+		{DDDC8FC5-E835-424D-A9AE-E1A5B2922652} = {61C608E3-D05F-4F5D-9368-B3B97004567B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E9B964-4FA9-48DA-ACCD-E539FA9D2949}

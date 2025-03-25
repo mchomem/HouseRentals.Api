@@ -59,5 +59,47 @@ public class HouseUnitTest
 
         // Assert
         Assert.True(house.Deleted);
-    }    
+    }
+
+    [Fact]
+    public void UpdateRentPrice_SingleDecimal_ShouldUpdateRentPrice()
+    {
+        // Arrange
+        var house = new House("Avenue United, 1000", 100.00m, 2, "house close of montains", "image.png");
+        var newPrice = 10.00m;
+
+        // Act
+        house.UpdateRentPrice(newPrice);
+        
+        // Assert
+        Assert.Equal(house.DailyPrice, newPrice);
+    }
+
+    [Fact]
+    public void UpdateRentPrice_SingleDecimalZero_ShouldReturnHouseInvalidRentPrice()
+    {
+        // Arrange
+        var house = new House("Avenue United, 1000", 100.00m, 2, "house close of montains", "image.png");
+        var newPrice = 0.00m;
+
+        // Assert & Act
+        Assert.Throws<HouseInvalidRentPrice>(() =>
+        {
+            house.UpdateRentPrice(newPrice);
+        });
+    }
+
+    [Fact]
+    public void UpdateRentPrice_SingleDecimalMoreThan100_ShouldReturnHouseInvalidRentPrice()
+    {
+        // Arrange
+        var house = new House("Avenue United, 1000", 100.00m, 2, "house close of montains", "image.png");
+        var newPrice = 101.00m;
+
+        // Assert & Act
+        Assert.Throws<HouseInvalidRentPrice>(() =>
+        {
+            house.UpdateRentPrice(newPrice);
+        });
+    }
 }
