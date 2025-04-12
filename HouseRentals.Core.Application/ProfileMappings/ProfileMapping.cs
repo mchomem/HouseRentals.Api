@@ -1,17 +1,17 @@
 ﻿namespace HouseRentals.Core.Application.ProfileMappings;
 
-public class ProfileMapping : Profile
+public static class ProfileMapping
 {
-    public ProfileMapping()
+    public static void RegisterMappings(TypeAdapterConfig config)
     {
-        CreateMap<Tenant, TenantDto>().ReverseMap();
-        CreateMap<Tenant, TenantInsertDto>().ReverseMap();
+        config.NewConfig<Tenant, TenantDto>().TwoWays();
+        config.NewConfig<Tenant, TenantInsertDto>().TwoWays();
 
-        CreateMap<House, HouseDto>().ReverseMap();
-        CreateMap<House, HouseInsertDto>().ReverseMap();
+        config.NewConfig<House, HouseDto>().TwoWays();
+        config.NewConfig<House, HouseInsertDto>().TwoWays();
 
-        CreateMap<Rental, RentalDto>().ReverseMap();
-        CreateMap<Rental, RentalInsertDto>().ReverseMap();
-        CreateMap<Rental, RentalUpdateDto>().ReverseMap();
+        config.NewConfig<Rental, RentalDto>().TwoWays();
+        config.NewConfig<Rental, RentalInsertDto>().TwoWays();
+        config.NewConfig<Rental, RentalUpdateDto>().TwoWays();
     }
 }

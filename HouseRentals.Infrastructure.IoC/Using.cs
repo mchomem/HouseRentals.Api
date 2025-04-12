@@ -1,9 +1,11 @@
 ﻿global using HouseRentals.Core.Application.Interfaces;
 global using HouseRentals.Core.Application.ProfileMappings;
 global using HouseRentals.Core.Application.Services;
+global using HouseRentals.Core.Domain.Interfaces;
 global using HouseRentals.Infrastructure.Persistence.Contexts;
 global using HouseRentals.Infrastructure.Persistence.Repositories;
-global using HouseRentals.Core.Domain.Interfaces;
+global using Mapster;
+global using MapsterMapper;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;

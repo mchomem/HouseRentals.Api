@@ -4,21 +4,42 @@ public static class DependenceInjectionApi
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        #region Database
+
         services.AddDbContext<AppDbContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
         services.AddScoped<AppDbContext, AppDbContext>();
+
+        #endregion
+
+        #region Repositories
+
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
         services.AddScoped<ITenantRepository, TenantRepository>();
         services.AddScoped<IHouseRepository, HouseRepository>();
         services.AddScoped<IRentalRepository, RentalRepository>();
-        
+
+        #endregion
+
+        #region Services
+
         services.AddScoped<ITenantService, TenantService>();
         services.AddScoped<IHouseService, HouseService>();
         services.AddScoped<IRentalService, RentalService>();
 
-        services.AddAutoMapper(typeof(ProfileMapping));
+        #endregion
+
+        #region Mapster
+
+        var config = TypeAdapterConfig.GlobalSettings;
+        ProfileMapping.RegisterMappings(config);
+        services.AddSingleton(config);
+        services.AddScoped<IMapper, ServiceMapper>();
+        services.AddMapster();
+
+        #endregion
 
         return services;
     }
